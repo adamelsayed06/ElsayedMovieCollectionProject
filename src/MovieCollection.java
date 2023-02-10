@@ -357,18 +357,54 @@ public class MovieCollection {
       System.out.println("\n ** Press Enter to Return to Main Menu **");
       scanner.nextLine();
     }
-
-
-
-
     }
 
   
   private void listHighestRated() {
-    /* TASK 6: IMPLEMENT ME */
+      ArrayList<Movie> allMovies = movies;
+      ArrayList<Movie> top50 = new ArrayList<Movie>();
+
+
+      for(int i = 0; i < 50; i++){
+        double maxRating = allMovies.get(0).getUserRating();
+        int maxIndex = 0;
+
+        for(int j = 1; j < allMovies.size(); j++){
+          double currentRating = allMovies.get(j).getUserRating();
+          if(currentRating > maxRating){
+            maxRating = currentRating;
+            maxIndex = j;
+          }
+      }
+        top50.add(allMovies.remove(maxIndex));
+    }
+
+    for(int i = 1; i < 51; i++){
+      System.out.println((i) + ". " + top50.get(i - 1).getTitle() + " " + top50.get(i - 1).getUserRating());
+    }
   }
   
   private void listHighestRevenue() {
-    /* TASK 6: IMPLEMENT ME */
+    ArrayList<Movie> allMovies = movies;
+    ArrayList<Movie> top50 = new ArrayList<Movie>();
+
+
+    for(int i = 0; i < 50; i++){
+      double maxRevenue = allMovies.get(0).getRevenue();
+      int maxIndex = 0;
+
+      for(int j = 1; j < allMovies.size(); j++){
+        double currentRevenue = allMovies.get(j).getRevenue();
+        if(currentRevenue > maxRevenue){
+          maxRevenue = currentRevenue;
+          maxIndex = j;
+        }
+      }
+      top50.add(allMovies.remove(maxIndex));
+    }
+
+    for(int i = 1; i < 51; i++){
+      System.out.println((i) + ". " + top50.get(i - 1).getTitle() + " $" + top50.get(i - 1).getRevenue());
+    }
   }
 }
